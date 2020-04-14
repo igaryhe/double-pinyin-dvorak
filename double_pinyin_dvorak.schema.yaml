@@ -1,0 +1,143 @@
+# Rime schema
+# encoding: utf-8
+
+schema:
+  schema_id: double_pinyin_dvorak
+  name: 德沃雙拼
+  version: "0.1"
+  author:
+    - double pinyin layout for dvorak by Dan <igaryhe@gmail.com>
+  description: |
+    修改自朙月拼音＋小鶴雙拼方案。
+  dependencies:
+    - stroke
+
+switches:
+  - name: ascii_mode
+    reset: 0
+    states: [ 中文, 西文 ]
+  - name: full_shape
+    states: [ 半角, 全角 ]
+  - name: simplification
+    states: [ 漢字, 汉字 ]
+  - name: ascii_punct
+    states: [ 。，, ．， ]
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - reverse_lookup_translator
+    - script_translator
+  filters:
+    - simplifier
+    - uniquifier
+
+speller:
+  alphabet: zyxwvutsrqponmlkjihgfedcba
+  delimiter: " '"
+  algebra:
+    - erase/^xx$/
+    - derive/^([jqxy])u$/$1v/
+    - derive/^([aoe])([ioun])$/$1$1$2/
+    - xform/^([aoe])(ng)?$/$1$1$2/
+    - xform/iu$/L/
+    - xform/(.)ei$/$1J/
+    - xform/uan$/F/
+    - xform/[uv]e$/W/
+    - xform/un$/Z/
+    - xform/^sh/U/
+    - xform/^ch/I/
+    - xform/^zh/V/
+    - xform/uo$/O/
+    - xform/ie$/S/
+    - xform/ing$|uai$/N/
+    - xform/(.)ai$/$1P/
+    - xform/(.)en$/$1X/
+    - xform/(.)eng$/$1B/
+    - xform/[iu]ang$/G/
+    - xform/(.)ang$/$1T/
+    - xform/i?ong$/K/
+    - xform/ian$/Q/
+    - xform/(.)an$/$1Y/
+    - xform/(.)ou$/$1D/
+    - xform/[iu]a$/C/
+    - xform/iao$/R/
+    - xform/(.)ao$/$1H/
+    - xform/ui$/V/
+    - xform/in$/M/
+    - xlit/QWRTYUIOPSDFGHJKLZXCVBNM/qwrtyuiopsdfghjklzxcvbnm/
+    #- abbrev/^(.).+$/$1/
+
+translator:
+  dictionary: luna_pinyin
+  prism: double_pinyin_flypy_dvorak
+  preedit_format:
+    - xform/([jqxnl])g/$1iang/
+    - xform/(?![jqxnl])(\w)g/$1uang/
+    - xform/([gkhvuirzcs])n/$1uai/
+    - xform/(?![ae])(\w)n(?!g)/$1ing/
+    - xform/([bpmfdtnljqx])r/$1iao/
+    - xform/(\w)l/$1iu/
+    - xform/(\w)j/$1ei/
+    - xform/([dtnlgkhjqxyvuirzcs])f/$1uan/
+    - xform/(\w)w/$1ve/
+    - xform/(\w)z/$1un/
+    - xform/([dtnlgkhvuirzcs])o/$1uo/
+    - xform/(\w)s/$1ie/
+    - xform/([jqx])k/$1iong/
+    - xform/(\w)p/$1ai/
+    - xform/(\w)d/$1ou/
+    - xform/([gkhvuirzcs])c/$1ua/
+    - xform/(\w)c/$1ia/
+    - xform/(\w)h/$1ao/
+    - xform/([dtgkhvuirzcs])v/$1ui/
+    - xform/(\w)b/$1eng/
+    - xform/(\w)q/$1ian/
+    - xform/(\w)k/$1ong/
+    - xform/(\w)t/$1ang/
+    - xform/(\w)y/$1an/
+    - xform/(?![ae])(\w)x/$1en/
+    - xform/(\w)m/$1in/
+    - xform/([aoe])\1(\w)/$1$2/
+    - "xform/(^|[ '])v/$1zh/"
+    - "xform/(^|[ '])i/$1ch/"
+    - "xform/(^|[ '])u/$1sh/"
+    - xform/([jqxy])v/$1u/
+    - xform/([nl])v/$1ü/
+
+reverse_lookup:
+  dictionary: stroke
+  enable_completion: true
+  prefix: "`"
+  suffix: "'"
+  tips: 〔筆畫〕
+  preedit_format:
+    - xlit/hspnz/一丨丿丶乙/
+  comment_format:
+    - xform/([nl])v/$1ü/
+
+punctuator:
+  import_preset: default
+
+key_binder:
+  import_preset: default
+
+recognizer:
+  import_preset: default
+  patterns:
+    reverse_lookup: "`[a-z]*'?$"

@@ -1,0 +1,15 @@
+* 德沃雙拼 / double_pinyin_dvorak
+为德沃夏克鍵盤佈局設計的雙拼方案。
+Double pinyin schema for Dvorak keyboard layout.
+** 安裝 / Install
+將 ~double_pinyin_dvorak.yaml~ 複製到 ~Rime~ 目錄下。
+將下列代碼添加至 ~Rime/default.custom.yaml~ 中：
+#+BEGIN_SRC yaml
+patch:
+  schema_list:
+    - schema: double_pinyin_dvorak
+#+END_SRC
+重新部署 Rime，即可選擇使用德沃雙拼。
+** 佈局 / Layout
+[[file:./layout.png]]
+本方案主要參考了[[https://www.flypy.com/pin.html][小鶴雙拼]]，同時針對德沃夏克鍵盤佈局做了一些調整。在降低擊鍵當量的同時，也嘗試平衡左右手的工作負荷。截圖中使用的工具是由[[https://github.com/tiansh][田生]]提供的[[https://tiansh.github.io/lqbz/sp/][雙拼佈局的統計計算]]，該工具爲輸入方案的優化提供了很大的便利。
