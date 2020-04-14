@@ -2,7 +2,7 @@
 为德沃夏克鍵盤佈局設計的雙拼方案。
 Double pinyin schema for Dvorak keyboard layout.
 ** 安裝 / Install
-將 ~double_pinyin_dvorak.yaml~ 複製到 ~Rime~ 目錄下。
+將 ~double_pinyin_dvorak.schema.yaml~ 複製到 ~Rime~ 目錄下。
 將下列代碼添加至 ~Rime/default.custom.yaml~ 中：
 #+BEGIN_SRC yaml
 patch:
