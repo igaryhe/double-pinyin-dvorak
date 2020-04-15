@@ -1,15 +1,16 @@
-* 德沃雙拼 / double_pinyin_dvorak
-为德沃夏克鍵盤佈局設計的雙拼方案。
-** 安裝 / Install
-本方案爲 Rime 輸入法引擎的輸入方案。使用前請先保證已經正確安裝 Rime 輸入法引擎。
-將 ~double_pinyin_dvorak.schema.yaml~ 複製到 ~Rime~ 目錄下。
-將下列代碼添加至 ~Rime/default.custom.yaml~ 中：
+* 德沃双拼
+为 Dvorak 键盘布局设计的双拼方案。
+** 安裝
+本方案依赖于
+- [[https://github.com/rime/rime-luna-pinyin][朙月拼音]] ℞ ~luna-pinyin~
+[[https://github.com/rime/plum][東風破]]安装口令： ~bash rime-install igaryhe/double-pinyin-dvorak~
+将下列代码添加至 ~Rime/default.custom.yaml~ 中：
 #+BEGIN_SRC yaml
 patch:
   schema_list:
     - schema: double_pinyin_dvorak
 #+END_SRC
-重新部署 Rime，即可選擇使用德沃雙拼。
-** 佈局 / Layout
+重新部署 Rime，即可选择使用德沃双拼。
+** 布局
 [[file:./layout.png]]
-本方案主要參考了[[https://www.flypy.com/pin.html][小鶴雙拼]]，同時針對德沃夏克鍵盤佈局做了一些調整。在降低擊鍵當量的同時，也嘗試平衡左右手的工作負荷。截圖中使用的工具是由[[https://github.com/tiansh][田生]]提供的[[https://tiansh.github.io/lqbz/sp/][雙拼佈局的統計計算]]，該工具爲輸入方案的優化提供了很大的便利。
+本方案主要參考了[[https://www.flypy.com/pin.html][小鹤双拼]]，同時针对 Dvorak 键盘布局做了一些調整。在降低击键当量的同时，也尝试平衡左右手的工作符合。截图中使用的工具是由[[https://github.com/tiansh][田生]]提供的[[https://tiansh.github.io/lqbz/sp/][双拼布局的统计计算]]。
