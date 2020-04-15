@@ -4,6 +4,7 @@
 本方案依赖于
 - [[https://github.com/rime/rime-luna-pinyin][朙月拼音]] ℞ ~luna-pinyin~
 [[https://github.com/rime/plum][東風破]]安装口令： ~bash rime-install igaryhe/double-pinyin-dvorak~
+
 将下列代码添加至 ~Rime/default.custom.yaml~ 中：
 #+BEGIN_SRC yaml
 patch:
