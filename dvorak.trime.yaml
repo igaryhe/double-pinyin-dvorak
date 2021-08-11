@@ -146,7 +146,7 @@ preset_color_schemes:
     text_back_color: 0xcce4e7e9 #編碼區背景
 
   wii:
-    name: "Wii"
+    name: "wii"
     author: "Patricivs <ipatrickmac@me.com>"
     text_color: 0x595757
     back_color: 0xefefef
@@ -159,6 +159,21 @@ preset_color_schemes:
     hilited_candidate_text_color: 0xffffff
     hilited_comment_text_color: 0xffffff
     hilited_candidate_back_color: 0x33ccff
+
+  wii-dark:
+    name: "wii dark"
+    author: "dan <igaryhe@gmail.com>"
+    text_color: 0xa6a8a8
+    back_color: 0x101010
+    border_color: 0x101010
+    label_color: 0x373635
+    hilited_text_color: 0xcc3300
+    hilited_back_color: 0x101010
+    candidate_text_color: 0xa6a8a8
+    comment_text_color: 0x373635
+    hilited_candidate_text_color: 0x000000
+    hilited_comment_text_color: 0x000000
+    hilited_candidate_back_color: 0xcc3300
 
 android_keys:
   name: [VoidSymbol, SOFT_LEFT, SOFT_RIGHT, HOME, BACK, CALL, ENDCALL,
@@ -383,7 +398,7 @@ preset_keyboards:
     - {click: BackSpace, width: 15}
     - {click: Keyboard_symbols, long_click: Keyboard_number, width: 15}
     - {click: 'q', long_click: '<'}
-    - {click: Mode_switch, long_click: Menu}
+    - {click: Mode_switch, long_click: Color_settings}
     - {click: space, width: 40}
     - {click: 'z', long_click: '>'}
     - {click: Return, long_click: CommitComment, width: 15}
