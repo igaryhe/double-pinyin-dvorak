@@ -2,8 +2,8 @@
 # encoding: utf-8
 
 config_version: "3.0"
-name: Dvorak #方案名稱
-author: igaryhe #作者資訊
+name: dvorak #方案名稱
+author: dan #作者資訊
 
 style:
   auto_caps: false #自動句首大寫:true|false|ascii
@@ -22,12 +22,20 @@ style:
   hanb_font: hanb.ttf #擴充字型
   horizontal: true #水平模式
   horizontal_gap: 1 #鍵水平間距
+  keyboard_padding: 0 #竖屏模式下，屏幕左右两侧与键盘的距离（曲面屏减少误触）
+  keyboard_padding_left: 0 #竖屏屏模式下，左手键盘布局，屏幕左侧与键盘的距离
+  keyboard_padding_right: 40 #竖屏屏模式下，左手键盘布局，屏幕右侧与键盘的距离
+  keyboard_padding_bottom: 0 #竖屏模式下，屏幕下边缘与键盘的距离（避免误触发全面屏手势）
+  keyboard_padding_land: 40 #横屏模式下，屏幕左右两侧与键盘的距离（避免横屏按键过度拉伸变形）
+  keyboard_padding_land_bottom: 0 #横屏模式下，屏幕下侧与键盘的距离
   layout: #懸浮窗口設置
     position: fixed #位置：left|right|left_up|right_up|fixed|bottom_left|bottom_right|top_left|top_right(left、right需要>=Android5.0)
     min_length: 5 #最小詞長
     max_length: 10 #超過字數則換行
     sticky_lines: 0 #固頂行數
+    sticky_lines_land: 0 #横屏模式下的固顶行数
     max_entries: 1 #最大詞條數
+    min_check: 3 #只要前n个候选词有长度大于等于min_length的词，就会把长度符合以及之前的词全部加到悬浮窗内。
     all_phrases: false #所有滿足條件的詞語都顯示在窗口
     border: 2 #邊框寬度
     max_width: 230 #最大寬度，超過則自動換行
@@ -36,13 +44,13 @@ style:
     min_height: 0 #最小高度
     margin_x: 5 #水平邊距
     margin_y: 5 #豎直邊距
+    margin_bottom: 0 #底部边距 （用于适配特定背景图）
     line_spacing: 0 #候选詞的行間距(px)
     line_spacing_multiplier: 1.2 #候选詞的行間距(倍數)
     spacing: 1 #與預編輯或邊緣的距離
     round_corner: 8 #窗口圓角
     alpha: 0xdd #透明度(0-255)
     elevation: 5 #陰影(>=Android5.0)
-    background: background.png #顏色或者backgrounds目錄下的圖片文件名
     movable: once #是否可移動窗口，或僅移動一次 true|false|once
   window: #懸浮窗口組件
     - {start: "", move: 'ㄓ ', end: ""}
@@ -59,6 +67,8 @@ style:
   latin_font: latin.ttf #西文字型
   latin_locale: en_US #西文語言
   locale: zh_CN #預設語言 zh_TW,zh_CN,zh_HK,""
+  keyboard_height: 220 #锁定键盘高度，避免切换时键盘高度变化而造成闪烁
+  keyboard_height_land: 200 #锁定横屏下键盘高度，避免切换时键盘高度变化而造成闪烁
   preview_font: latin.ttf #按鍵提示字型
   preview_height: 60 #按鍵提示高度
   preview_offset: -12 #按鍵提示縱向偏移
@@ -148,31 +158,34 @@ preset_color_schemes:
   wii:
     name: "wii"
     author: "Patricivs <ipatrickmac@me.com>"
+    dark_scheme: wii-dark
     text_color: 0x595757
+    candidate_text_color: 0x595757
+    comment_text_color: 0xc8c9ca
     back_color: 0xefefef
     border_color: 0xefefef
     label_color: 0xc8c9ca
     hilited_text_color: 0x33ccff
-    hilited_back_color: 0xefefef
-    candidate_text_color: 0x595757
-    comment_text_color: 0xc8c9ca
-    hilited_candidate_text_color: 0xffffff
+    # hilited_candidate_text_color: 0xffffff
+    hilited_candidate_text_color: 0x000000
     hilited_comment_text_color: 0xffffff
+    hilited_back_color: 0xefefef
     hilited_candidate_back_color: 0x33ccff
 
   wii-dark:
     name: "wii dark"
-    author: "dan <igaryhe@gmail.com>"
+    author: "dan <i@dan.games>"
     text_color: 0xa6a8a8
+    candidate_text_color: 0xa6a8a8
+    comment_text_color: 0x373635
     back_color: 0x101010
     border_color: 0x101010
     label_color: 0x373635
     hilited_text_color: 0xcc3300
-    hilited_back_color: 0x101010
-    candidate_text_color: 0xa6a8a8
-    comment_text_color: 0x373635
-    hilited_candidate_text_color: 0x000000
+    # hilited_candidate_text_color: 0x000000
+    hilited_candidate_text_color: 0xffffff
     hilited_comment_text_color: 0x000000
+    hilited_back_color: 0x101010
     hilited_candidate_back_color: 0xcc3300
 
 android_keys:
@@ -361,7 +374,7 @@ preset_keys:
 preset_keyboards:
   default:
     name: ABC
-    author: "igaryhe <igaryhe@gmail.com>"
+    author: "dan <i@dan.games>"
     ascii_mode: 0
     width: 10
     height: 48
@@ -408,7 +421,7 @@ preset_keyboards:
     lock: false
   number:
     name: 預設數字
-    author: "igaryhe <igaryhe@gmail.com>"
+    author: "dan <i@dan.games>"
     width: 14
     height: 48
     keys:
@@ -436,7 +449,7 @@ preset_keyboards:
     - {click: Return}
   symbols:
     name: 符号
-    author: "igaryhe <igaryhe@gmail.com>"
+    author: "dan <i@dan.games>"
     ascii_mode: 1
     width: 10
     height: 48
@@ -479,7 +492,7 @@ preset_keyboards:
 
   symbols_more:
     name: 更多符号
-    author: "igaryhe <igaryhe@gmail.com>"
+    author: "dan <i@dan.games>"
     ascii_mode: 1
     width: 10
     height: 48
